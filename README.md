@@ -1,2 +1,2 @@
 # pastebin
- A Python class for the API on pastebin.com
+A Python class for the API on pastebin.com
