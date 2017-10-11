@@ -297,7 +297,7 @@ class PasteBin:
 
 	def create_user_key(self, username, password):
 		params = {'api_dev_key':self.api_dev_key, 'api_user_name':username, 'api_user_password':password}
-		return api_call('api_login.php', params)
+		return self.api_call('api_login.php', params)
 
 	def paste(self, data, guest=False, name=None, format=None, private=None, expire=None):
 		params = {'api_dev_key':self.api_dev_key, 'api_option':'paste', 'api_paste_code':data}

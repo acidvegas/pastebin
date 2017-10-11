@@ -21,7 +21,7 @@ else:
 	password = getpass.getpass('[?] - Password: ')
 	api_user_key = api.create_user_key(username, password)
 	if 'Bad API request' not in api_user_key:
-		print('[+] - You API user key is: ' + ap_user_key)
+		print('[+] - You API user key is: ' + api_user_key)
 		api = pastebin.PasteBin(api_dev_key, api_user_key)
 	else:
 		raise SystemExit('[!] - Failed to create API user key! ({0})'.format(api_user_key.split(', ')[1]))
