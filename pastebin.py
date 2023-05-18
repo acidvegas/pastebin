@@ -287,7 +287,6 @@ class PasteBin:
 	def __init__(self, api_dev_key, api_user_key=None):
 		self.api_dev_key  = api_dev_key
 		self.api_user_key = api_user_key
-		self.timeout      = timeout
 
 	def api_call(self, method, params):
 		response = urllib.request.urlopen('https://pastebin.com/api/' + method, urllib.parse.urlencode(params).encode('utf-8'), timeout=10)
