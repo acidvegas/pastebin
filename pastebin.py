@@ -1,9 +1,10 @@
 #!/usr/bin/env python
-# PasteBin API Class - Developed by acidvegas in Python (https://acid.vegas/pastebin)
+# PasteBin API Class - Developed by acidvegas in Python (https://git.acid.vegas/pastebin)
 
 '''
 API Documentation:
-	https://pastebin.com/api
+	https://pastebin.com/doc_api
+	https://pastebin.com/doc_scraping_api
 '''
 
 import urllib.parse
@@ -283,13 +284,13 @@ private_values = {
 }
 
 class PasteBin:
-	def __init__(self, api_dev_key, api_user_key=None, timeout=10):
+	def __init__(self, api_dev_key, api_user_key=None):
 		self.api_dev_key  = api_dev_key
 		self.api_user_key = api_user_key
 		self.timeout      = timeout
 
 	def api_call(self, method, params):
-		response = urllib.request.urlopen('https://pastebin.com/api/' + method, urllib.parse.urlencode(params).encode('utf-8'), timeout=self.timeout)
+		response = urllib.request.urlopen('https://pastebin.com/api/' + method, urllib.parse.urlencode(params).encode('utf-8'), timeout=10)
 		return response.read().decode()
 
 	def create_user_key(self, username, password):
