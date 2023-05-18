@@ -9,10 +9,10 @@
 ```python
 #!/usr/bin/env python
 import pastebin
-api_dev_key = 'CHANGEME'
-api    = pastebin.PasteBin(api_dev_key)
-data   = open(__file__).read()
-result = api.paste(data, guest=True, name='Example Script', format='Python', private='1', expire='10M')
+api_key = 'CHANGEME'
+api     = pastebin.PasteBin(api_key)
+data    = open(__file__).read()
+result  = api.paste(data, guest=True, name='Example Script', format='Python', private='1', expire='10M')
 print('PasteBin URL: ' + result)
 ```
 
