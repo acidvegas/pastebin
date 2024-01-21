@@ -19,5 +19,4 @@ print('PasteBin URL: ' + result)
 
 ___
 
-###### Mirrors
-[acid.vegas](https://git.acid.vegas/pastebin) • [GitHub](https://github.com/acidvegas/pastebin) • [GitLab](https://gitlab.com/acidvegas/pastebin) • [SuperNETs](https://git.supernets.org/acidvegas/pastebin)
+###### Mirrors for this repository: [acid.vegas](https://git.acid.vegas/pastebin) • [SuperNETs](https://git.supernets.org/acidvegas/pastebin) • [GitHub](https://github.com/acidvegas/pastebin) • [GitLab](https://gitlab.com/acidvegas/pastebin) • [Codeberg](https://codeberg.org/acidvegas/pastebin)
