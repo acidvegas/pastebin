@@ -1,0 +1,50 @@
+#!/bin/sh
+# posix shell script for the pastebin api - developed by acidvegas (https://git.acid.vegas/random)
+# pastebin
+
+# https://pastebin.com/doc_api
+# https://pastebin.com/doc_scraping_api
+
+api_key=""
+api_user_key=""
+
+usage() {
+	echo "pastebin <path>    | create a new paste with the contents of <path>"
+	echo "pastebin pastes    | list metadata for all of your pastes"
+	echo "pastebin userkey   | retrieve your api_user_key (required for some commands)"
+	echo "pastebin del <id>  | delete a paste   (<id> is the ending of your paste url or can be retrieved from the `pastebin pastes` output)"
+	echo "pastebin read <id> | read a raw paste (<id> is the ending of your paste url or can be retrieved from the `pastebin pastes` output)"
+}
+
+[ -z api_key ] && echo "error: no api_key defined (visit https://pastebin.com/doc_api for more help)" && exit 1
+if [ $# = 1 ]; then
+	if [ $1 = 'pastes'  ]; then
+		[ -z $api_user_key ] && echo "error: no api_user_key defined (run ./pastebin userkey to get your api_user_key)" && exit 1
+		curl -X POST -d 'api_dev_key=$api_key' -d 'api_user_key=$api_user_key' -d 'api_option=list' -d 'api_results_limit=1000' "https://pastebin.com/api/api_post.php"
+	elif [ $1 = 'userkey' ]; then
+		read -p  'username: ' username
+		read -sp 'password: ' password
+		curl -X POST -d 'api_dev_key=$api_key' -d 'api_user_name=$username' -d 'api_user_password=$password' "https://pastebin.com/api/api_login.php"
+	elif [ $1 = 'user' ]; then
+		curl -X POST -d 'api_dev_key=$api_key' -d 'api_user_key=$api_user_key' -d 'api_option=userdetails' "https://pastebin.com/api/api_post.php"
+	elif [ -f $1 ]; then
+		curl -X POST -d 'api_dev_key=$api_key' -d 'api_paste_code=$(cat $1)' -d 'api_option=paste' "https://pastebin.com/api/api_post.php"
+		# optional arguments:
+		#	-d 'api_paste_name='
+		#	-d 'api_paste_format='      # https://pastebin.com/doc_api#5
+		#	-d 'api_paste_private='     # 0 public | 1 unlisted | 2 private (api_user_key required for private)
+		#	-d 'api_paste_expire_date=' # N 10M 1H 1D 1W 2W 1M 6M 1Y
+		#	-d 'api_user_key='
+		#	-d 'api_folder_key='
+	fi
+elif [ $# = 3 ]; then
+	if [ $1 = 'del' ]; then
+		curl -X POST -d 'api_dev_key=$api_key' -d 'api_user_key=$api_user_key' -d 'api_option=delete' -d 'api_paste_key=$2' "https://pastebin.com/api/api_post.php"
+	elif [ $1 = 'read' ]; then
+		[ -z $api_user_key ] && echo "error: no api_user_key defined (run ./pastebin userkey to get your api_user_key)" && exit 1
+		curl -X POST -d 'api_dev_key=$api_key' -d 'api_user_key=$api_user_key' -d 'api_option=show_paste' -d 'api_paste_key=$2' "https://pastebin.com/api/api_post.php"
+	fi
+fi
+
+
+
