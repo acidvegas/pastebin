@@ -15,8 +15,8 @@ result  = api.paste(data, guest=True, name='Example Script', format='Python', pr
 print('PasteBin URL: ' + result)
 ```
 
-**Note**: A posix shell script example can be found [here](https://github.com/acidvegas/random/blob/master/pastebin)
+**Note**: A posix shell script example can be found [here](./pastebin)
 
 ___
 
-###### Mirrors for this repository: [acid.vegas](https://git.acid.vegas/pastebin) • [SuperNETs](https://git.supernets.org/acidvegas/pastebin) • [GitHub](https://github.com/acidvegas/pastebin) • [GitLab](https://gitlab.com/acidvegas/pastebin) • [Codeberg](https://codeberg.org/acidvegas/pastebin)
+###### Mirrors: [SuperNETs](https://git.supernets.org/acidvegas/pastebin) • [GitHub](https://github.com/acidvegas/pastebin) • [GitLab](https://gitlab.com/acidvegas/pastebin) • [Codeberg](https://codeberg.org/acidvegas/pastebin)
